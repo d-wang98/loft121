@@ -10,19 +10,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Test {
-  id    String @id @default(uuid())
-  title String
-
-}
-
 model Artworks {
-  artworkId String @id @default(uuid())
-  blurb String
+  artworkId Int @id @default(autoincrement())
+  blurb     String
 
+  artistId  Int @unique
+  // TODO: Ask Sean about edge cases...
+  //       1. Are there pieces that will be present in multiple exhibitions?
+  //       2. Are there artworks that are collabs of multiple artists?
+  artist    Artist @relation(fields: [artistId], references: [id])
+  exhibitId Int @unique
+  exhibit   Exhibit @relation(fields: [exhibitId], references: [id])
 }
 
 model Artist {
-  artistId String @id @default(uuid())
-  // artworks Artworks?   @relation(fields: [artistId], references: [artworkId])
+  id          Int @id @default(autoincrement())
+  blurb       String
+  artworks    Artworks[]
+  exhibit     Exhibit[]
+}
+
+model Exhibit {
+  id       Int @id @default(autoincrement())
+  artworks Artworks[]
+  artists  Artist[]
 }

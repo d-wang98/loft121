@@ -12,6 +12,7 @@ datasource db {
 
 model Artworks {
   artworkId Int @id @default(autoincrement())
+  name      String
   blurb     String
 
   artistId  Int @unique
@@ -25,6 +26,7 @@ model Artworks {
 
 model Artist {
   id          Int @id @default(autoincrement())
+  name        String
   blurb       String
   artworks    Artworks[]
   exhibit     Exhibit[]
@@ -32,6 +34,7 @@ model Artist {
 
 model Exhibit {
   id       Int @id @default(autoincrement())
+  name     String
   artworks Artworks[]
   artists  Artist[]
 }

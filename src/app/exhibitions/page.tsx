@@ -1,5 +1,20 @@
 import Link from "next/link";
 
+function generateExhibits() {
+  let exhibitList = [
+    [123, "abc"],
+    [123, "abc"],
+  ];
+  //   return (
+  // <>
+  //     for (i = 0; i < exhibitList.length(); i ++){
+  //       <Link href=>
+  //       </Link>
+  //     };
+  // </>
+  //   );
+}
+
 export default function Exhibitions() {
   return (
     <>
@@ -17,6 +32,7 @@ export default function Exhibitions() {
           Exhibitions
         </Link>
       </header>
+      {generateExhibits()}
       <Link
         className="underline hover:bg-slate-300 rounded"
         href="/exhibitions/dimlyatfirst"
